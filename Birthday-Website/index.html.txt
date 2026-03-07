@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:radial-gradient(circle,#020111,#000000);
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+/* Stars */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.2;}
+to{opacity:1;}
+}
+
+/* Hearts */
+
+.heart{
+position:absolute;
+color:#ff4d6d;
+font-size:25px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh) scale(1);}
+100%{transform:translateY(-10vh) scale(1.5);}
+}
+
+/* Gallery */
+
+.gallery img{
+width:260px;
+height:320px;
+border-radius:15px;
+margin-top:15px;
+box-shadow:0 0 15px pink;
+}
+
+/* Cake */
+
+.cake{
+margin-top:20px;
+cursor:pointer;
+}
+
+.layer{
+width:180px;
+height:40px;
+margin:auto;
+border-radius:10px;
+background:pink;
+}
+
+.layer2{background:#ff7aa2;}
+.layer3{background:#ff4d6d;}
+
+.candle{
+width:10px;
+height:35px;
+background:white;
+margin:auto;
+}
+
+.flame{
+width:10px;
+height:10px;
+background:orange;
+border-radius:50%;
+animation:flicker .5s infinite alternate;
+}
+
+@keyframes flicker{
+from{transform:scale(1);}
+to{transform:scale(1.4);}
+}
+
+/* Popup */
+
+.popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+color:black;
+padding:20px;
+border-radius:12px;
+display:none;
+width:80%;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:#ff4d6d;
+color:white;
+margin-top:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>🎂 Happy Birthday My Girl ❤️</h2>
+
+<!-- Photo Gallery -->
+
+<div class="gallery">
+<img id="photo" src="photo1.jpg">
+</div>
+
+<!-- Cake -->
+
+<div class="cake" onclick="cutCake()">
+
+<div class="candle">
+<div class="flame" id="flame"></div>
+</div>
+
+<div class="layer layer3"></div>
+<div class="layer layer2"></div>
+<div class="layer"></div>
+
+</div>
+
+<button onclick="openLetter()">Read My Message 💌</button>
+
+<!-- Love Letter -->
+
+<div class="popup" id="letter">
+
+<h3>For You ❤️</h3>
+
+<p>
+You are the most beautiful part of my life.
+Your smile lights up my world.
+Happy birthday to a beautiful soul! May this year bring you love, success, and endless joy.
+Happy Birthday ❤️
+</p>
+
+<button onclick="closeLetter()">Close</button>
+
+</div>
+
+<!-- Music -->
+
+<audio autoplay loop>
+
+<source src="until-i-found-you.mp3" type="audio/mp3">
+
+</audio>
+
+<script>
+
+/* Stars */
+
+for(let i=0;i<150;i++){
+
+let star=document.createElement("div")
+
+star.className="star"
+
+star.style.left=Math.random()*100+"vw"
+
+star.style.top=Math.random()*100+"vh"
+
+document.body.appendChild(star)
+
+}
+
+/* Hearts */
+
+setInterval(()=>{
+
+let heart=document.createElement("div")
+
+heart.className="heart"
+
+heart.innerHTML="❤"
+
+heart.style.left=Math.random()*100+"vw"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),6000)
+
+},300)
+
+/* Gallery */
+
+let images=[
+
+"photo1.jpg",
+"photo2.jpg",
+"photo3.jpg",
+"photo4.jpg",
+"photo5.jpg"
+
+]
+
+let i=0
+
+setInterval(()=>{
+
+i=(i+1)%images.length
+
+document.getElementById("photo").src=images[i]
+
+},3000)
+
+/* Cake */
+
+function cutCake(){
+
+document.getElementById("flame").style.display="none"
+
+fireworks()
+
+alert("🎉 Cake Cut! Happy Birthday ❤️")
+
+}
+
+/* Fireworks */
+
+function fireworks(){
+
+for(let i=0;i<25;i++){
+
+let spark=document.createElement("div")
+
+spark.innerHTML="✨"
+
+spark.style.position="absolute"
+
+spark.style.left=Math.random()*100+"vw"
+
+spark.style.top=Math.random()*50+"vh"
+
+spark.style.fontSize="25px"
+
+document.body.appendChild(spark)
+
+setTimeout(()=>spark.remove(),2000)
+
+}
+
+}
+
+/* Letter */
+
+function openLetter(){
+
+document.getElementById("letter").style.display="block"
+
+}
+
+function closeLetter(){
+
+document.getElementById("letter").style.display="none"
+
+}
+
+</script>
+
+</body>
+</html>
