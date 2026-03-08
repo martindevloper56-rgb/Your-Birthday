@@ -1,99 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Happy Birthday ❤️</title>
+<title>Happy Birthday Soma ❤️</title>
 
 <style>
+
 body{
-    margin:0;
-    padding:0;
-    text-align:center;
-    font-family:Arial;
-    background:linear-gradient(45deg,#ff9a9e,#fad0c4);
-    overflow-x:hidden;
+margin:0;
+padding:0;
+text-align:center;
+background:black;
+color:white;
+font-family:Arial;
+overflow:hidden;
 }
 
 h1{
-    font-size:60px;
-    color:white;
-    margin-top:50px;
-    animation: glow 2s infinite alternate;
+margin-top:120px;
+font-size:60px;
+color:#ff4d6d;
+animation:glow 2s infinite alternate;
 }
 
 @keyframes glow{
-    from{ text-shadow:0 0 10px white;}
-    to{ text-shadow:0 0 30px yellow;}
+from{ text-shadow:0 0 10px #ff4d6d;}
+to{ text-shadow:0 0 30px yellow;}
 }
 
-.message{
-    font-size:25px;
-    color:white;
-    margin:20px;
+button{
+padding:15px 30px;
+font-size:20px;
+border:none;
+border-radius:10px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+margin-top:30px;
 }
 
-.gallery{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    margin-top:30px;
-}
-
-.gallery img{
-    width:250px;
-    height:250px;
-    object-fit:cover;
-    border-radius:20px;
-    box-shadow:0 0 15px black;
-    transition:0.5s;
-}
-
-.gallery img:hover{
-    transform:scale(1.1);
+.popup{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+color:black;
+padding:30px;
+border-radius:10px;
+width:80%;
+max-height:70vh;
+overflow:auto;
 }
 
 .heart{
-    position:fixed;
-    top:-10px;
-    color:red;
-    animation:fall linear infinite;
+position:fixed;
+top:-10px;
+font-size:24px;
+animation:fall linear infinite;
 }
 
 @keyframes fall{
-    to{
-        transform:translateY(110vh);
-    }
+to{
+transform:translateY(100vh);
 }
+}
+
+.firework{
+position:fixed;
+width:5px;
+height:5px;
+background:white;
+border-radius:50%;
+animation:explode 1s linear infinite;
+}
+
+@keyframes explode{
+0%{transform:scale(1);}
+100%{transform:scale(20);opacity:0;}
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>🎂 Happy Birthday ❤️</h1>
+<h1>🎂 Happy Birthday Soma ❤️</h1>
 
-<div class="message">
-    Wishing you a day filled with love, happiness and lots of cake 🎉  
+<p>Click below for a special message 💌</p>
+
+<button onclick="showLetter()">Read My Letter</button>
+
+<div class="popup" id="letter">
+
+<h2>Happy Birthday, Soma ❤️</h2>
+
+<p>
+Dear Soma,<br><br>
+
+Happy Birthday to the most special girl in my life. Today is not only your birthday, but it also marks one beautiful year of our friendship. I still remember when we first started talking, and I never imagined that you would become such an important part of my life.<br><br>
+
+This one year with you has been full of beautiful moments, laughter, and memories that I will always cherish. Your smile has a magical way of making my day better, and your presence makes everything feel a little brighter.<br><br>
+
+Soma, you are not just a friend to me. You are someone who means a lot more than words can explain. I truly feel lucky to have you in my life. Talking to you, sharing things with you, and simply knowing that you are there makes my world feel happier.<br><br>
+
+On your special day, I just want to wish that your life is always filled with happiness, success, love, and all the beautiful things you deserve. May your smile never fade, and may every dream you have come true.<br><br>
+
+Thank you for being such a wonderful person and for making my life a little more special just by being in it. I hope our bond keeps growing stronger with time.<br><br>
+
+Once again, Happy Birthday, Soma.<br>
+You will always be someone very special to me.<br><br>
+
+With lots of care and affection,<br>
+Someone who truly cares about you ❤️
+</p>
+
+<button onclick="closeLetter()">Close</button>
+
 </div>
 
-<!-- Photo Gallery -->
-<div class="gallery">
-
-<img src="photos/photo1.jpg">
-<img src="photos/photo2.jpg">
-<img src="photos/photo3.jpg">
-
-</div>
-
-<!-- Music -->
 <audio autoplay loop>
 <source src="music/song.mp3" type="audio/mp3">
 </audio>
 
 <script>
 
-// hearts animation
+function showLetter(){
+document.getElementById("letter").style.display="block"
+}
+
+function closeLetter(){
+document.getElementById("letter").style.display="none"
+}
+
 function createHeart(){
+
 const heart=document.createElement("div")
 heart.classList.add("heart")
 heart.innerHTML="❤️"
@@ -110,6 +151,24 @@ heart.remove()
 }
 
 setInterval(createHeart,300)
+
+function createFirework(){
+
+const fire=document.createElement("div")
+fire.classList.add("firework")
+
+fire.style.left=Math.random()*100+"vw"
+fire.style.top=Math.random()*100+"vh"
+
+document.body.appendChild(fire)
+
+setTimeout(()=>{
+fire.remove()
+},1000)
+
+}
+
+setInterval(createFirework,800)
 
 </script>
 
