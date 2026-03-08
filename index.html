@@ -1,56 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Soma ❤️</title>
+<title>Happy Birthday Soma ❤️</title><style>
 
-<style>
 body{
 margin:0;
 padding:0;
 height:100vh;
+overflow:hidden;
+background:black;
+color:white;
+font-family:Arial;
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-font-family:Arial;
-color:white;
 text-align:center;
-background: radial-gradient(circle at bottom,#0d1b2a,#000000);
-overflow:hidden;
-}
-
-h1{
-font-size:45px;
-animation: glow 2s infinite alternate;
-}
-
-@keyframes glow{
-from{ text-shadow:0 0 10px pink;}
-to{ text-shadow:0 0 30px red;}
-}
-
-button{
-padding:15px 30px;
-font-size:18px;
-border:none;
-background:#ff4081;
-color:white;
-border-radius:10px;
-cursor:pointer;
-}
-
-#letter{
-display:none;
-margin-top:20px;
-font-size:20px;
-max-width:600px;
-animation: fade 3s;
-}
-
-@keyframes fade{
-from{opacity:0;}
-to{opacity:1;}
 }
 
 canvas{
@@ -59,50 +24,155 @@ top:0;
 left:0;
 z-index:-1;
 }
-</style>
-</head>
 
-<body>
+h1{
+font-size:50px;
+color:#ff4da6;
+text-shadow:0 0 20px pink;
+}
 
-<h1>🎂 Happy Birthday Soma ❤️</h1>
+button{
+padding:15px 35px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#ff4da6;
+color:white;
+cursor:pointer;
+margin-top:20px;
+}
 
-<button onclick="showLetter()">Open Your Surprise 🎁</button>
+#gift{
+font-size:60px;
+margin-top:20px;
+cursor:pointer;
+display:none;
+}
 
-<div id="letter">
+#letter{
+display:none;
+max-width:700px;
+font-size:20px;
+margin-top:20px;
+white-space:pre-line;
+}
 
-<p>
+</style></head><body><h1>🎂 Happy Birthday Soma ❤️</h1><button onclick="showGift()">Click For Surprise 🎁</button>
 
-My Dearest **Soma**,  
-
-From the day you came into my life, everything started feeling more beautiful.  
-Your smile brightens my darkest days and your presence makes my world complete.  
-
-Today is not just your birthday…  
-it's the day the most special person in my life was born.  
-
-Thank you for being my best friend, my happiness, and the reason behind my smiles.  
-
-I promise to always stand beside you, support you, and love you more with every passing day.  
-
-💖 Happy Birthday My Love 💖  
-
-Forever Yours  
-</p>
-
-</div>
-
-<!-- SONG -->
-<iframe width="0" height="0"
+<div id="gift" onclick="openLetter()">🎁</div><div id="letter"></div><!-- SONG --><iframe width="0" height="0"
 src="https://www.youtube.com/embed/GxldQ9eX2wo?autoplay=1&loop=1&playlist=GxldQ9eX2wo"
-frameborder="0"
 allow="autoplay">
-</iframe>
+</iframe><canvas id="stars"></canvas>
 
 <script>
-function showLetter(){
-document.getElementById("letter").style.display="block";
-}
-</script>
 
-</body>
+function showGift(){
+document.querySelector("button").style.display="none";
+document.getElementById("gift").style.display="block";
+}
+
+function openLetter(){
+
+document.getElementById("gift").style.display="none";
+
+const text = `My Dearest Soma ❤️
+
+From the moment you came into my life,
+everything started feeling more beautiful.
+
+Your smile lights up my darkest days,
+and your presence makes my world complete.
+
+Today is not just your birthday…
+it is the day the most special person in my life was born.
+
+Thank you for being my best friend,
+my happiness, and the reason behind my smiles.
+
+I promise to always stay with you,
+support you, and love you more with every passing day.
+
+💖 Happy Birthday My Love Soma 💖
+
+Forever Yours ❤️`;
+
+let i=0;
+let speed=50;
+let letter=document.getElementById("letter");
+letter.style.display="block";
+
+function typing(){
+if(i<text.length){
+letter.innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,speed);
+}
+}
+
+typing();
+
+fireworks();
+
+}
+
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let stars=[];
+
+for(let i=0;i<200;i++){
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2
+});
+}
+
+function drawStars(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="white";
+
+stars.forEach(star=>{
+ctx.beginPath();
+ctx.arc(star.x,star.y,star.size,0,Math.PI*2);
+ctx.fill();
+});
+
+requestAnimationFrame(drawStars);
+}
+
+drawStars();
+
+function fireworks(){
+
+setInterval(()=>{
+
+for(let i=0;i<30;i++){
+
+let div=document.createElement("div");
+
+div.style.position="fixed";
+div.style.width="6px";
+div.style.height="6px";
+div.style.background="red";
+div.style.borderRadius="50%";
+
+div.style.left=Math.random()*window.innerWidth+"px";
+div.style.top=Math.random()*window.innerHeight+"px";
+
+document.body.appendChild(div);
+
+setTimeout(()=>div.remove(),1000);
+
+}
+
+},500);
+
+}
+
+</script></body>
 </html>
